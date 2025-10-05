@@ -1,10 +1,102 @@
-[gd_scene load_steps=3 format=3 uid="uid://2il8nf2dfgg3"]
+[gd_scene load_steps=9 format=3 uid="uid://2il8nf2dfgg3"]
 
 [ext_resource type="Texture2D" uid="uid://108qse11h0tl" path="res://assets/charlieTheCapybaraAnimationSheet.png" id="1_q1sdc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0e48y"]
 radius = 17.0
 height = 40.0
+
+[sub_resource type="Animation" id="Animation_q1sdc"]
+resource_name = "Idle"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333, 0.23333333, 0.43333334, 0.6666667, 0.8666667, 1.1, 1.3333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_m2cfu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
+[sub_resource type="Animation" id="Animation_h4k7t"]
+resource_name = "Run"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333, 0.23333333, 0.43333334, 0.6666667, 0.8666667, 1.1, 1.3333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [72, 73, 74, 75, 76, 77, 78]
+}
+
+[sub_resource type="Animation" id="Animation_xyg26"]
+resource_name = "Jump"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333, 0.23333333, 0.43333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [36, 37, 38]
+}
+
+[sub_resource type="Animation" id="Animation_86pv0"]
+resource_name = "Fall"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333, 0.23333333, 0.43333334, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [45, 46, 47, 48]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h4k7t"]
+_data = {
+&"Fall": SubResource("Animation_86pv0"),
+&"Idle": SubResource("Animation_q1sdc"),
+&"Jump": SubResource("Animation_xyg26"),
+&"RESET": SubResource("Animation_m2cfu"),
+&"Run": SubResource("Animation_h4k7t")
+}
 
 [node name="Capivara" type="CharacterBody2D"]
 
@@ -19,3 +111,9 @@ offset = Vector2(0, -1)
 hframes = 9
 vframes = 9
 frame = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_h4k7t")
+}
+autoplay = "Idle"

@@ -12,6 +12,8 @@ const JUMP_VELOCITY = -400.0
 @export var _air_control: float = 0.5
 var _jump_velocity: float
 
+@onready var _sprite : Sprite2D = $Sprite2D
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var _direction: float
 
@@ -25,10 +27,10 @@ func _ready():
 #region Public Methods
 
 func face_left():
-	return
+	_sprite.flip_h = true
 	
 func face_right():
-	return
+	_sprite.flip_h = false
 	
 func run(direction: float):
 	_direction = direction
@@ -44,6 +46,11 @@ func stop_jump():
 #endregion
 
 func _physics_process(delta: float) -> void:
+	if sign(_direction) == -1:
+		face_left()
+	elif sign(_direction) == 1:
+		face_right()
+	
 	if is_on_floor():
 		_ground_physics(delta)
 	else:
