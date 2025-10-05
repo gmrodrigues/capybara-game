@@ -10,6 +10,7 @@ extends CharacterBody2D
 const JUMP_VELOCITY = -400.0
 @export var _jump_height: float = 4.5
 @export var _air_control: float = 0.5
+@export var _jump_dust : PackedScene
 var _jump_velocity: float
 
 @onready var _sprite : Sprite2D = $Sprite2D
@@ -37,6 +38,7 @@ func run(direction: float):
 	
 	
 func jump():
+	_spawn_dust(_jump_dust)
 	if is_on_floor():
 		velocity.y = _jump_velocity
 		
@@ -65,10 +67,10 @@ func _air_physics(delta: float) -> void:
 func _ground_physics(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity += gravity * delta
 
 	# Handle jump.
-	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	#if Input.is_action_just_pressed  ("ui_accept") and is_on_floor():
 		#velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
@@ -84,3 +86,9 @@ func _ground_physics(delta: float) -> void:
 	# accelerate to oposite direction
 	else:
 		velocity.x = move_toward(velocity.x, _direction * _speed, _deceleration * delta)
+
+func _spawn_dust(dust: PackedScene):
+	var _dust = dust.instantiate()
+	_dust.position = position
+	_dust.flip_h = _sprite.flip_h
+	get_parent().add_child(_dust)

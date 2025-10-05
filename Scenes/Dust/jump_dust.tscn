@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://cw0bcfjoqdq8n"]
+
+[ext_resource type="Texture2D" uid="uid://ctcmwjc64tm24" path="res://assets/Dust Particles/Jump 01.png" id="1_gqroy"]
+[ext_resource type="Texture2D" uid="uid://dhk2kt334r8vq" path="res://assets/Dust Particles/Jump 02.png" id="2_fxxvt"]
+[ext_resource type="Texture2D" uid="uid://d3l4sjlwv5b2c" path="res://assets/Dust Particles/Jump 03.png" id="3_qjvx5"]
+[ext_resource type="Texture2D" uid="uid://cofqgkscxii8k" path="res://assets/Dust Particles/Jump 04.png" id="4_ik714"]
+[ext_resource type="Texture2D" uid="uid://bu2jidjop2hw2" path="res://assets/Dust Particles/Jump 05.png" id="5_dfscv"]
+[ext_resource type="Texture2D" uid="uid://b87ul12yo2gmw" path="res://assets/Dust Particles/Jump 06.png" id="6_0c607"]
+[ext_resource type="Script" uid="uid://bjwttto2l7y07" path="res://Scripts/dust.gd" id="6_dfscv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xaeov"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gqroy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fxxvt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qjvx5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ik714")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dfscv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0c607")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Dust Particles" type="AnimatedSprite2D"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_xaeov")
+script = ExtResource("6_dfscv")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
