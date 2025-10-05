@@ -1,17 +1,26 @@
 extends CharacterBody2D
 
 
-@export var _speed : float = 8
+@export_category("Locomotion")
+@export var _speed : float = 16
 @export var _acceleration : float = 16
 @export var _deceleration : float = 32
-const JUMP_VELOCITY = -400.0
 
+@export_category("Jump")
+const JUMP_VELOCITY = -400.0
+@export var _jump_height: float = 4.5
+@export var _air_control: float = 0.5
+var _jump_velocity: float
+
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var _direction: float
 
 func _ready():
 	_speed *= Global.ppt
 	_acceleration *= Global.ppt
 	_deceleration *= Global.ppt
+	_jump_height *= Global.ppt
+	_jump_velocity = sqrt(_jump_height * gravity * 3) * -1
 
 #region Public Methods
 
@@ -27,11 +36,26 @@ func run(direction: float):
 	
 func jump():
 	if is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		velocity.y = _jump_velocity
+		
+func stop_jump():
+	if velocity.y < 0:
+		velocity.y = 0
 #endregion
-	
 
 func _physics_process(delta: float) -> void:
+	if is_on_floor():
+		_ground_physics(delta)
+	else:
+		_air_physics(delta)
+	move_and_slide()
+		
+func _air_physics(delta: float) -> void:
+	velocity.y += gravity * delta
+	if _direction:
+		velocity.x = move_toward(velocity.x, _direction * _speed, _acceleration * _air_control * delta)
+
+func _ground_physics(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -53,6 +77,3 @@ func _physics_process(delta: float) -> void:
 	# accelerate to oposite direction
 	else:
 		velocity.x = move_toward(velocity.x, _direction * _speed, _deceleration * delta)
-		
-
-	move_and_slide()
