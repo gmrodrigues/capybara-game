@@ -1,11 +1,17 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+@export var _speed : float = 8
+@export var _acceleration : float = 16
+@export var _deceleration : float = 32
 const JUMP_VELOCITY = -400.0
 
 var _direction: float
 
+func _ready():
+	_speed *= Global.ppt
+	_acceleration *= Global.ppt
+	_deceleration *= Global.ppt
 
 #region Public Methods
 
@@ -37,9 +43,16 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	#var direction := Input.get_axis("ui_left", "ui_right")
-	if _direction:
-		velocity.x = _direction * SPEED
+	
+	# decelerate to zero
+	if _direction == 0:
+		velocity.x = move_toward(velocity.x, 0, _deceleration * delta)
+	# accelerate from not moving or move to same direction
+	elif velocity.x == 0 || sign(_direction) == sign(velocity.x):
+		velocity.x = move_toward(velocity.x, _direction * _speed, _acceleration * delta)
+	# accelerate to oposite direction
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, _direction * _speed, _deceleration * delta)
+		
 
 	move_and_slide()
