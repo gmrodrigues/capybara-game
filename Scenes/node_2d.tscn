@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bls2nwi65cm7k"]
+
+[ext_resource type="Texture2D" uid="uid://108qse11h0tl" path="res://assets/charlieTheCapybaraAnimationSheet.png" id="1_wtcfe"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0e48y"]
+radius = 19.0
+height = 46.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-7, 5)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_0e48y")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_wtcfe")
+offset = Vector2(0, -1)
+hframes = 9
+vframes = 9
+frame = 10

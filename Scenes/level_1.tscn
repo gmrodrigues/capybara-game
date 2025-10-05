@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://csm3qdyn0gvjq"]
+
+[ext_resource type="PackedScene" uid="uid://cucrmmasu8nj8" path="res://Scenes/floor.tscn" id="1_xfk5q"]
+[ext_resource type="PackedScene" uid="uid://2il8nf2dfgg3" path="res://Scenes/capivara.tscn" id="2_7p6j4"]
+[ext_resource type="Script" uid="uid://crs84dl2ugx8t" path="res://Scripts/capivara.gd" id="3_6444e"]
+[ext_resource type="Script" uid="uid://djctbe7l8rmoe" path="res://Scripts/player.gd" id="4_7p6j4"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 399.0
+offset_bottom = 89.0
+text = "Capybara Figther"
+
+[node name="Floor" parent="." instance=ExtResource("1_xfk5q")]
+position = Vector2(576.50006, 679)
+scale = Vector2(8.9765625, 0.4140625)
+
+[node name="Capivara" parent="." instance=ExtResource("2_7p6j4")]
+position = Vector2(537, 619)
+script = ExtResource("3_6444e")
+
+[node name="Player" type="Node" parent="Capivara"]
+script = ExtResource("4_7p6j4")
