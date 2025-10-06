@@ -421,6 +421,8 @@ zoom = Vector2(2, 2)
 script = ExtResource("6_evi0p")
 _subject = NodePath("../Capivara")
 _offset = Vector2(4, -2)
+_trans_type = 1
+_ease = 1
 
 [connection signal="changed_direction" from="Capivara" to="Camera2D" method="_on_subject_changed_direction"]
 [connection signal="landed" from="Capivara" to="Camera2D" method="_on_subject_landed"]
