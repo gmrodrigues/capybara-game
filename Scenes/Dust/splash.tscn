@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgtjnjcb4g6sc"]
+
+[ext_resource type="Texture2D" uid="uid://cqnaffwdl3oc8" path="res://assets/Merchant Ship/Sprites/Water/Water Splash 1/1.png" id="1_p70mn"]
+[ext_resource type="Texture2D" uid="uid://bjms5ri7cm565" path="res://assets/Merchant Ship/Sprites/Water/Water Splash 1/2.png" id="2_78ohg"]
+[ext_resource type="Texture2D" uid="uid://b02sh2hiujrqp" path="res://assets/Merchant Ship/Sprites/Water/Water Splash 1/3.png" id="3_y58mv"]
+[ext_resource type="Texture2D" uid="uid://x01lvhrdkc21" path="res://assets/Merchant Ship/Sprites/Water/Water Splash 1/4.png" id="4_ubjk5"]
+[ext_resource type="Texture2D" uid="uid://dbh74gcy3db05" path="res://assets/Merchant Ship/Sprites/Water/Water Splash 1/5.png" id="5_sh7iy"]
+[ext_resource type="Script" uid="uid://bjwttto2l7y07" path="res://Scripts/dust.gd" id="6_pytd4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xaeov"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p70mn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_78ohg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y58mv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ubjk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_sh7iy")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Dust Particles" type="AnimatedSprite2D"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_xaeov")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+script = ExtResource("6_pytd4")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://csm3qdyn0gvjq"]
+[gd_scene load_steps=11 format=3 uid="uid://csm3qdyn0gvjq"]
 
 [ext_resource type="PackedScene" uid="uid://2il8nf2dfgg3" path="res://Scenes/capivara.tscn" id="2_7p6j4"]
 [ext_resource type="Script" uid="uid://djctbe7l8rmoe" path="res://Scripts/player.gd" id="4_7p6j4"]
-[ext_resource type="Texture2D" uid="uid://1ntebb8gsgws" path="res://assets/Terrain/Terrain (32x32).png" id="4_6444e"]
+[ext_resource type="Texture2D" uid="uid://1ntebb8gsgws" path="res://Treasure Hunters/Treasure Hunters/Palm Tree Island/Sprites/Terrain/Terrain (32x32).png" id="4_6444e"]
 [ext_resource type="PackedScene" uid="uid://cov0cun7e6sje" path="res://Scenes/Decorations/palm_tree.tscn" id="5_6444e"]
 [ext_resource type="Script" uid="uid://c2vf6jfwc2rx4" path="res://Scripts/camera.gd" id="6_evi0p"]
+[ext_resource type="PackedScene" uid="uid://ddygue0gaxyr5" path="res://Scenes/background.tscn" id="6_lsmp6"]
+[ext_resource type="PackedScene" uid="uid://bjegqn34t1vlh" path="res://Scenes/watter.tscn" id="7_lsmp6"]
+[ext_resource type="PackedScene" uid="uid://dgtjnjcb4g6sc" path="res://Scenes/Dust/splash.tscn" id="8_xrdnt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7p6j4"]
 texture = ExtResource("4_6444e")
@@ -423,6 +426,14 @@ _subject = NodePath("../Capivara")
 _offset = Vector2(4, -2)
 _trans_type = 1
 _ease = 1
+
+[node name="Background" parent="Camera2D" instance=ExtResource("6_lsmp6")]
+z_index = -10
+position = Vector2(-706, -480)
+
+[node name="Watter" parent="." instance=ExtResource("7_lsmp6")]
+position = Vector2(385, 615)
+_splash = ExtResource("8_xrdnt")
 
 [connection signal="changed_direction" from="Capivara" to="Camera2D" method="_on_subject_changed_direction"]
 [connection signal="landed" from="Capivara" to="Camera2D" method="_on_subject_landed"]

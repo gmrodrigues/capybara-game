@@ -1,0 +1,112 @@
+[gd_scene load_steps=16 format=3 uid="uid://ddygue0gaxyr5"]
+
+[ext_resource type="Texture2D" uid="uid://di00ork25v8or" path="res://Treasure Hunters/Treasure Hunters/Palm Tree Island/Sprites/Background/Additional Sky.png" id="1_4aqey"]
+[ext_resource type="Texture2D" uid="uid://ca87qopahcxlh" path="res://Treasure Hunters/Treasure Hunters/Palm Tree Island/Sprites/Background/Additional Water.png" id="2_xgxeb"]
+[ext_resource type="Texture2D" uid="uid://lmnqd8ea6332" path="res://Treasure Hunters/Treasure Hunters/Palm Tree Island/Sprites/Background/BG Image.png" id="3_ltlj5"]
+[ext_resource type="Texture2D" uid="uid://c411n0v23t6hp" path="res://assets/Background/Water Reflect Big 01.png" id="4_42s4r"]
+[ext_resource type="Texture2D" uid="uid://djsbodiovtffy" path="res://assets/Background/Water Reflect Big 02.png" id="5_kopta"]
+[ext_resource type="Texture2D" uid="uid://fo7r5mkser4q" path="res://assets/Background/Water Reflect Small 01.png" id="6_wi0l6"]
+[ext_resource type="Texture2D" uid="uid://dsqcli55wxqei" path="res://assets/Background/Water Reflect Small 02.png" id="7_b4xn0"]
+[ext_resource type="Texture2D" uid="uid://co0o1h3pvvu3b" path="res://assets/Background/Water Reflect Small 03.png" id="8_bdh0s"]
+[ext_resource type="Texture2D" uid="uid://be4xied55facy" path="res://assets/Background/Big Clouds.png" id="8_kopta"]
+[ext_resource type="Texture2D" uid="uid://dy3kvfwmwqsqp" path="res://assets/Background/Water Reflect Small 04.png" id="9_7ys8v"]
+[ext_resource type="Texture2D" uid="uid://btns0cta4lbmx" path="res://assets/Background/Small Cloud 1.png" id="10_1dkp5"]
+[ext_resource type="Texture2D" uid="uid://dp5jsdivfkb4w" path="res://assets/Background/Water Reflect Big 03.png" id="12_1dkp5"]
+[ext_resource type="Texture2D" uid="uid://cn2xb3gf66fq4" path="res://assets/Background/Water Reflect Big 04.png" id="13_jn2ok"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1dkp5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wi0l6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_b4xn0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bdh0s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7ys8v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jieww"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_42s4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kopta")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_1dkp5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_jn2ok")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Background" type="Node2D"]
+z_index = -1
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+ignore_camera_scroll = true
+
+[node name="AdditionalSky" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(663.5, 107.00001)
+scale = Vector2(43.09375, 8.374999)
+texture = ExtResource("1_4aqey")
+
+[node name="AdditionalWater" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(645.24994, 636.25)
+scale = Vector2(42.79687, 7.046872)
+texture = ExtResource("2_xgxeb")
+
+[node name="BgImage" type="Sprite2D" parent="Parallax2D"]
+z_index = -10
+position = Vector2(654, 382)
+scale = Vector2(3.5651045, 2.5703125)
+texture = ExtResource("3_ltlj5")
+
+[node name="BigClouds" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-224, 0)
+repeat_size = Vector2(448, 0)
+autoscroll = Vector2(-76, 0)
+repeat_times = 4
+ignore_camera_scroll = true
+
+[node name="BigClouds2" type="Sprite2D" parent="BigClouds"]
+position = Vector2(1208, 388)
+texture = ExtResource("8_kopta")
+
+[node name="SmallClound1" type="Parallax2D" parent="."]
+scroll_offset = Vector2(224, 0)
+repeat_size = Vector2(448, 0)
+autoscroll = Vector2(-20, 0)
+repeat_times = 5
+ignore_camera_scroll = true
+
+[node name="SmallCloud1" type="Sprite2D" parent="SmallClound1"]
+z_index = -1
+position = Vector2(110, 355)
+texture = ExtResource("10_1dkp5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(642, 505)
+scale = Vector2(7.239288, 5.125003)
+sprite_frames = SubResource("SpriteFrames_1dkp5")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(647, 463)
+scale = Vector2(2.7705882, 3.7)
+sprite_frames = SubResource("SpriteFrames_jieww")
+autoplay = "default"
