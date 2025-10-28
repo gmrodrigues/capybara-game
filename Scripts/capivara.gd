@@ -1,5 +1,8 @@
 class_name Character extends CharacterBody2D
 
+var _is_bound : bool
+var _min : Vector2
+var _max : Vector2
 
 @export_category("Locomotion")
 @export var _speed : float = 16
@@ -42,6 +45,17 @@ func _ready():
 	face_left() if _is_facing_left else face_right()
 
 #region Public Methods
+
+func set_bounds(min_boundary : Vector2, max_boundary: Vector2):
+	_is_bound = true
+	_min = min_boundary
+	_max = max_boundary
+	var sprite_size : Vector2 = _sprite.get_rect().size
+	_min.x += sprite_size.x / 2
+	_max.x -= sprite_size.x / 2
+	_min.y += sprite_size.y / 2
+	_max.y -= sprite_size.y / 2
+	
 
 func face_left():
 	_is_facing_left = true
@@ -104,6 +118,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if not _was_on_floor && is_on_floor():
 		_landed()
+	if _is_bound:
+		position.x = clamp(position.x, _min.x, _max.x)
+		position.y = clamp(position.y, _min.y, _max.y)
 		
 func _air_physics(delta: float) -> void:
 	velocity.y += gravity * delta

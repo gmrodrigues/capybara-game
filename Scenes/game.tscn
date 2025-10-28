@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://csm3qdyn0gvjq"]
+
+[ext_resource type="Script" uid="uid://dsrmsbkpocitl" path="res://Scripts/game_manager.gd" id="1_i6g32"]
+[ext_resource type="PackedScene" uid="uid://2il8nf2dfgg3" path="res://Scenes/capivara.tscn" id="1_wowpa"]
+[ext_resource type="Script" uid="uid://djctbe7l8rmoe" path="res://Scripts/player.gd" id="2_i6g32"]
+[ext_resource type="Script" uid="uid://c2vf6jfwc2rx4" path="res://Scripts/camera.gd" id="3_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://ddygue0gaxyr5" path="res://Scenes/background.tscn" id="4_v158k"]
+[ext_resource type="PackedScene" uid="uid://dufodpidetfkj" path="res://Scenes/Levels/level_1_1.tscn" id="5_h4fw4"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_i6g32")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 399.0
+offset_bottom = 89.0
+text = "Capybara Figther"
+
+[node name="Capivara" parent="." instance=ExtResource("1_wowpa")]
+position = Vector2(980, 561)
+
+[node name="Node2D" type="Node2D" parent="Capivara"]
+script = ExtResource("2_i6g32")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("_subject")]
+position = Vector2(706, 480)
+zoom = Vector2(2, 2)
+script = ExtResource("3_1l0tm")
+_subject = NodePath("../Capivara")
+_offset = Vector2(4, -2)
+_trans_type = 1
+_ease = 1
+
+[node name="Background" parent="Camera2D" instance=ExtResource("4_v158k")]
+z_index = -10
+position = Vector2(-706, -480)
+
+[node name="Level" parent="." instance=ExtResource("5_h4fw4")]
+position = Vector2(31, 29)
+
+[connection signal="changed_direction" from="Capivara" to="Camera2D" method="_on_subject_changed_direction"]
+[connection signal="landed" from="Capivara" to="Camera2D" method="_on_subject_landed"]

@@ -11,6 +11,8 @@ func _spawn_splash(x: float):
 
 
 func _on_body_entered(body: Node2D) -> void:
+	if body is TileMap:
+		return
 	_spawn_splash(body.position.x)
 	if body is Character:
 		body.enter_water(position.y)
