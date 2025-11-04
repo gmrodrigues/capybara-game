@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcimyrpln3ovr"]
+
+[ext_resource type="PackedScene" uid="uid://d21lalhmlrg4r" path="res://Scenes/Treasure/coin_pack.tscn" id="1_cc2mt"]
+
+[node name="Area2D" type="Area2D"]
+
+[node name="CoinPack" parent="." instance=ExtResource("1_cc2mt")]

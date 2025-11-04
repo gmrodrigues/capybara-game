@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://d21lalhmlrg4r"]
+
+[ext_resource type="PackedScene" uid="uid://b4l54eb5mnp4w" path="res://Scenes/Treasure/silver_coin.tscn" id="1_3co2k"]
+[ext_resource type="PackedScene" uid="uid://ds2mvejohqhxg" path="res://Scenes/Treasure/gold_coin.tscn" id="2_lhyue"]
+
+[node name="CoinPack" type="Node"]
+
+[node name="SilverCoin" parent="." instance=ExtResource("1_3co2k")]
+position = Vector2(8, 16)
+
+[node name="SilverCoin2" parent="." instance=ExtResource("1_3co2k")]
+position = Vector2(32, 16)
+
+[node name="SilverCoin3" parent="." instance=ExtResource("1_3co2k")]
+position = Vector2(96, 16)
+
+[node name="GoldCoin" parent="." instance=ExtResource("2_lhyue")]
+position = Vector2(64, 8)
+
+[node name="SilverCoin4" parent="." instance=ExtResource("1_3co2k")]
+position = Vector2(120, 16)

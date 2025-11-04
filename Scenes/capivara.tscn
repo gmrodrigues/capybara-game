@@ -272,6 +272,8 @@ states/StateMachine/position = Vector2(343, 95)
 transitions = ["Start", "StateMachine", SubResource("AnimationNodeStateMachineTransition_q1sdc")]
 
 [node name="Capivara" type="CharacterBody2D"]
+collision_layer = 256
+collision_mask = 3
 script = ExtResource("1_h4k7t")
 _jump_dust = ExtResource("2_xyg26")
 
