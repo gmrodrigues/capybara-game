@@ -1,0 +1,202 @@
+[gd_scene load_steps=26 format=3 uid="uid://bxp3x3f4hcyfg"]
+
+[ext_resource type="Script" uid="uid://dk8132lxwdnfc" path="res://Scenes/Treasure/Scripts/chest.gd" id="1_p1jt7"]
+[ext_resource type="Texture2D" uid="uid://c7md32t4ucbvy" path="res://assets/Objects/Chest/Chest Open 03.png" id="2_1ma0p"]
+[ext_resource type="PackedScene" uid="uid://b4l54eb5mnp4w" path="res://Scenes/Treasure/silver_coin.tscn" id="2_1pve4"]
+[ext_resource type="PackedScene" uid="uid://ds2mvejohqhxg" path="res://Scenes/Treasure/gold_coin.tscn" id="3_5pguo"]
+[ext_resource type="Texture2D" uid="uid://csx4g0bx034os" path="res://assets/Objects/Chest/Chest Open 01.png" id="3_hf78d"]
+[ext_resource type="Texture2D" uid="uid://bfsnmhoxdj1yv" path="res://assets/Objects/Chest/Chest Open 06.png" id="4_4chqd"]
+[ext_resource type="Texture2D" uid="uid://beog15jdiveku" path="res://assets/Objects/Chest/Chest Open 09.png" id="5_b0fru"]
+[ext_resource type="Texture2D" uid="uid://de4agi7swgne8" path="res://assets/Objects/Chest/Chest Open 02.png" id="6_1pve4"]
+[ext_resource type="Texture2D" uid="uid://ddrav6jm5c2pu" path="res://assets/Objects/Chest/Chest Open 08.png" id="7_5pguo"]
+[ext_resource type="Texture2D" uid="uid://djff6niait02h" path="res://assets/Objects/Chest/Chest Open 10.png" id="8_mnv62"]
+[ext_resource type="AudioStream" uid="uid://diqihqsn53vw4" path="res://assets/sounds/832267__horvi64__closing-thump.mp3" id="9_irhvi"]
+[ext_resource type="AudioStream" uid="uid://wndg0v66q45y" path="res://assets/sounds/547625__fmaudio__opening-light-wooden-door-2.wav" id="10_glos6"]
+
+[sub_resource type="Animation" id="Animation_aq5y8"]
+resource_name = "closed_idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_hf78d")]
+}
+
+[sub_resource type="Animation" id="Animation_ti13y"]
+resource_name = "open_idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_1ma0p")]
+}
+
+[sub_resource type="Animation" id="Animation_uwgpu"]
+resource_name = "close"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_4chqd"), ExtResource("5_b0fru"), ExtResource("6_1pve4"), ExtResource("7_5pguo"), ExtResource("8_mnv62")]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_irhvi")
+}],
+"times": PackedFloat32Array(0, 0.06666667)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_bo86s"]
+resource_name = "open"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.96666664, 1.6333333, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_mnv62"), ExtResource("7_5pguo"), ExtResource("5_b0fru"), ExtResource("4_4chqd")]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_glos6")
+}],
+"times": PackedFloat32Array(0, 0.06666667)
+}
+tracks/1/use_blend = true
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"plunder"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_02kjv"]
+_data = {
+&"close": SubResource("Animation_uwgpu"),
+&"closed_idle": SubResource("Animation_aq5y8"),
+&"open": SubResource("Animation_bo86s"),
+&"open_idle": SubResource("Animation_ti13y")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_irhvi"]
+animation = &"closed_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5pguo"]
+animation = &"open"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mnv62"]
+animation = &"open_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bo86s"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1pve4"]
+advance_mode = 2
+advance_expression = "_is_open"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5pguo"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mnv62"]
+states/closed_idle/node = SubResource("AnimationNodeAnimation_irhvi")
+states/closed_idle/position = Vector2(403, 137)
+states/open/node = SubResource("AnimationNodeAnimation_5pguo")
+states/open/position = Vector2(581, 128)
+states/open_idle/node = SubResource("AnimationNodeAnimation_mnv62")
+states/open_idle/position = Vector2(392, 221)
+transitions = ["Start", "closed_idle", SubResource("AnimationNodeStateMachineTransition_bo86s"), "closed_idle", "open", SubResource("AnimationNodeStateMachineTransition_1pve4"), "open", "open_idle", SubResource("AnimationNodeStateMachineTransition_5pguo")]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3h2vc"]
+size = Vector2(51, 26)
+
+[node name="Chest" type="Area2D"]
+z_index = -1
+collision_layer = 16777216
+collision_mask = 256
+script = ExtResource("1_p1jt7")
+_silver_coin = ExtResource("2_1pve4")
+_gold_coin = ExtResource("3_5pguo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7.6293945e-06, -8)
+scale = Vector2(1.75, 2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_02kjv")
+}
+autoplay = "closed_idle"
+speed_scale = 10.0
+next/closed_idle = &"closed_idle"
+
+[node name="AnimationTree" type="AnimationTree" parent="Sprite2D/AnimationPlayer"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_mnv62")
+advance_expression_base_node = NodePath("../../..")
+anim_player = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 13)
+shape = SubResource("RectangleShape2D_3h2vc")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
